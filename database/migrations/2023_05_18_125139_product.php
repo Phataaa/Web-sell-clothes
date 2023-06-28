@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('brand');
             $table->string('color');
             $table->string('gender');
+            $table->string('price');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('category');
             $table->integer('user_id')->nullable()->unsigned();

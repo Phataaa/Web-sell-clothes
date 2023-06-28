@@ -7,6 +7,8 @@ use App\Http\Controllers\ControllerAdmin;
 use App\Http\Controllers\ControllerCategory;
 use App\Http\Controllers\ControllerProduct;
 use App\Http\Controllers\ControllerHome;
+use App\Http\Controllers\ControllerImage;
+use App\Http\Controllers\ControllerSlide;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,8 +42,7 @@ Route::get('/', function () {
 // Route::get('/create-product', function() {
 //     return view('product.create');
 // });
-
-
+Route::post('/update_image/{id}', [ControllerImage::class, 'update'])->name('update.image');
 
 
 Route::get('/Register', [ControllerUser::class, 'create'])->name('create.register');
@@ -49,7 +50,7 @@ Route::post('/Register', [ControllerUser::class, 'store'])->name('register.store
 Route::get('profile', [ControllerUser::class, 'profile'])->name('profile');
 Route::get('edit_profile/{id}', [ControllerUser::class, 'editprofile'])->name('edit.profile');
 Route::post('update/{id}', [ControllerUser::class, 'update'])->name('update.profile');
-Route::get('create_user', [ControllerUser::class, ''])
+Route::get('create_user', [ControllerUser::class, 'create_user'])->name('create_user');
 
 
 
@@ -76,16 +77,27 @@ Route::group(['prefix'=>'Category'], function() {
 });
     
 
-
+Route::group(['prefix' =>'Product'], function() {
     Route::get('create', [ControllerProduct::class, 'create'])->name('create.product');
     Route::post('store', [ControllerProduct::class, 'store'])->name('store.product');
     Route::get('edit/{id}', [ControllerProduct::class, 'edit'])->name('edit.product');
     ROute::post('update/{id}', [ControllerProduct::class, 'update'])->name('update.product');
+});
+
+
+Route::get('nam', [ControllerHome::class, 'index'])->name('index.nam');
+// Route::get('Slide', [ControllerHome::class, 'slide'])->name('slide.home');
+Route::get('detail', [ControllerHome::class, 'detail'])->name('detail.home');
+
+
+Route::get('slide_create', [ControllerSlide::class, 'create'])->name('slide.create');
+Route::post('slide_create', [ControllerSlide::class, 'store'])->name('store.slide');
+Route::get('lide', [ControllerSlide::class, 'index'])->name('slide.index');
 
 
 
-Route::get('Home', [ControllerHome::class, 'index'])->name('index.home');
-Route::get('Slide', [ControllerHome::class, 'slide'])->name('slide.home');
-
+Route::get('account', function() {
+    return view('user.buyer.account');
+});
 
 

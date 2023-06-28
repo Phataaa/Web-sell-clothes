@@ -3,32 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use App\Models\slide;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Models\category;
-use App\Models\product;
-class ControllerHome extends Controller
+class ControllerSlide extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function detail() {
-        return view('detail');
-    }
     public function index()
     {
-        $session = Session::get('email');
-        $user = DB::table('users')->where('email', '=', $session)->get();
-        $Product = product::all();
-        $Category = category::all();
-        return view('nam', compact('user', 'Product', 'Category'));
-    }
-    public function slide()
-    {
-        return view('slide');
+        $Slide1 = DB::table('slide')->where('name', '=', 'Slide1')->get();
+        $Slide2 = DB::table('slide')->where('name', '=', 'Slide2')->get();
+        return view('slide', compact('Slide1', 'Slide2'));
     }
 
     /**
@@ -38,7 +27,7 @@ class ControllerHome extends Controller
      */
     public function create()
     {
-        //
+        return view('slide.create');
     }
 
     /**
@@ -49,7 +38,35 @@ class ControllerHome extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->isMethod('POST')){
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'image' => 'required|image|mimes:jpg,png,jpeg,avif|max:5000'
+            ]);
+            if($validator->fails()){
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            if($request->hasfile('image')){
+             
+                $Images = $request->file('image');
+               
+                $path = public_path('slide/image');
+                $Image_name = time(). '_' . $Images->getClientOriginalName();
+                $Images->move($path, $Image_name);
+              
+                
+            }
+            else{
+                $image_name = 'no.jpg';
+            }
+            $newSlide = new slide();
+            $newSlide->name = $request->name;
+            $newSlide->slide = $Image_name;
+            $newSlide->description = $request->description;
+            $newSlide->save();
+
+            
+        }
     }
 
     /**

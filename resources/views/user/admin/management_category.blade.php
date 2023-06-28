@@ -19,7 +19,10 @@
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                    
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      
+                      <th class="align-middle text-center text-sm"> 
+                        <span class="badge badge-sm bg-gradient-success"> <a href=""> Edit</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create.category')}}">Create</a></span></th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>

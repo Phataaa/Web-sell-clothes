@@ -23,6 +23,11 @@ header ul li {
     font-size: 35px;
     margin-left: 50px;
     font-weight: bold;
+    cursor: pointer;
+}
+header ul li a{
+  text-decoration: none;
+  color: black;
 }
 header ul li:nth-of-type(5){
     margin-right: 450px;
@@ -60,7 +65,7 @@ header ul li:nth-of-type(5){
     margin-left: 50px;
     position: absolute;
     font-size: 25px;
-    top: 50%;
+    top: 45%;
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -69,7 +74,7 @@ header ul li:nth-of-type(5){
     position: absolute;
     right: 0;
     font-size: 25px;
-    top: 50%;
+    top: 45%;
     margin-right: 50px;
     width: 80px;
     height: 80px;
@@ -80,6 +85,7 @@ header ul li:nth-of-type(5){
   height: 100px;
   position: relative;
   margin-left: 0;
+  cursor: pointer;
  }
  #account i{
   margin-top: 40px;
@@ -95,18 +101,14 @@ header ul li:nth-of-type(5){
  #account p{
   padding: auto;
  }
- .menu{
-  height: auto;
-  width: 100px;
-  display: block;
+ .icon{
+  position: absolute;
+  margin-left: 30px;
+  bottom: 20%;
  }
- .category{
-  float: left;
-  width: 20%;
-  background-color: aqua;
+ .icon i{
+  font-size: 10px;
+  padding-bottom: 5px;
  }
- .product{
-  float: right;
-  width: 80%;
-  background-color: red;
- }
+
+     

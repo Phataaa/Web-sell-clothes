@@ -10,7 +10,7 @@
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="card-body">
-                <form action="{{route('store.product')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('store.slide')}}" method="post" enctype="multipart/form-data">
                   @if ($errors->any())
 
                   <div class="alert alert-danger">
@@ -31,41 +31,13 @@
               
                   @endif
                   @csrf
-                    <h1 style="text-align: center">Create Product</h1>
+                    <h1 style="text-align: center">Create Slide</h1>
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Name</label>
                     <input type="text" class="form-control" name="name">
                   </div>
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Quanity</label>
-                    <input type="text" class="form-control" name="quanity">
-                  </div>
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Brand</label>
-                    <input type="text" class="form-control" name="brand">
-                  </div>
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Price</label>
-                    <input type="text" class="form-control" name="price">
-                  </div>
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Color</label>
-                    <input type="text" class="form-control" name="color">
-                  </div>
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Gender</label>
-                    <input type="text" class="form-control" name="gender">
-                  </div>
-                  <div class="input-group input-group-outline my-3">
-                    
-                    <select class="form-control" name="category" >
-                      <option value="" disabled selected hidden>Category</option>
-                      <option value=""></option>
-                      @foreach ($Category as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>                          
-                      @endforeach
-                    </select>
-                  </div>
+                 
+                  
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Description</label>
                     <input type="textarea" class="form-control" name="description">
@@ -74,7 +46,7 @@
                     <input type="hidden" name="user" value="1">
                   </div>
                   <div>
-                    <input type="file" name="image[]" id="" multiple>
+                    <input type="file" name="image" id="" multiple>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Submit</button>

@@ -30,7 +30,7 @@ class ControllerAuth extends Controller
             Session::put($credentials);
             if(Auth::user()->role == 'buyer') {
                 
-                return redirect()->route('profile');
+                return redirect()->route('slide.index');
             }
             if(Auth::user()->role == 'admin'){
                 return redirect()->route('management_user');
@@ -49,7 +49,7 @@ class ControllerAuth extends Controller
         $user = Socialite::driver('google')->stateless()->user();
         $finduser = User::where('provider_id', $user->id)->first();
         if($finduser) {
-            $finduser->session()->regenerate();
+           
             Auth::login($finduser);
             return redirect()->route('index.home');
         }

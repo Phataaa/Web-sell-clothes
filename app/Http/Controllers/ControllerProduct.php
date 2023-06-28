@@ -47,11 +47,12 @@ class ControllerProduct extends Controller
                 'color' => 'required',
                 'category' => 'required',
                 'gender' => 'required',
-                'description' => 'required',
-                'image.*' => 'required|image|mimes:jpg,png,jpeg|max:5000'
+            
+                'price' =>'required',
+                'image.*' => 'required|image|mimes:jpg,png,jpeg,avif|max:5000'
             ]);
             if($validator->fails()){
-                return Redirect()->back()->withError($validator)->withInput();
+                return redirect()->back()->withErrors($validator)->withInput();
             }
             if($request->hasfile('image')){
                 $Product_images = [];
@@ -74,6 +75,7 @@ class ControllerProduct extends Controller
             $newProduct->category_id = $request->category;
             $newProduct->gender = $request->gender;
             $newProduct->description = $request->description;
+            $newProduct->price = $request->price;
             $newProduct->user_id = $request->user;
             $newProduct->save();
 
@@ -133,7 +135,7 @@ class ControllerProduct extends Controller
                 'image.*' => 'required|image|mimes:jpg,png,jpeg|max:5000'
             ]);
             if($validator->fails()){
-                return Redirect()->back()->withError($validator)->withInput();
+                return Redirect()->back()->withErrors($validator)->withInput();
             }
             if($request->hasfile('image')){
                 $Product_images = [];

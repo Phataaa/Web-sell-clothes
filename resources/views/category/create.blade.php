@@ -9,6 +9,25 @@
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-body">
                 <form action="{{route('store.category')}}" method="post" class="text-start">
+                  @if ($errors->any())
+
+                  <div class="alert alert-danger">
+              
+                  <strong>Whoops!</strong> There were some problems with your input.<br><br>
+              
+                  <ul>
+              
+                  @foreach ($errors->all() as $error)
+              
+                  <li>{{ $error }}</li>
+              
+                  @endforeach
+              
+                  </ul>
+              
+                  </div>
+              
+                  @endif
                     @csrf
                     <h1 style="text-align: center">Create Category</h1>
                   <div class="input-group input-group-outline my-3">

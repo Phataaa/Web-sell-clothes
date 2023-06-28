@@ -1,48 +1,49 @@
-var slides = [];
-var slideshows = document.querySelectorAll('.slideshow-container');
-console.log(slideshows);
-var childnode = [];
-var index = 1;
-slideshows.forEach((slideshow)=> {
- childnode = slideshow.childNodes;
- var element = [];
- for(var i=1; i<=5; i++) {
-  var node = childnode[i];
-  if(node.nodeType===1){
-  element.push(node);
-  }
- }
- slides.push(element);
- slideshow.addEventListener('mousewheel', function(event) {
-  // Xử lý sự kiện lăn chuột tại đây
-  var delta = event.wheelDelta;
-  if (delta > 0) {
-    // Lăn chuột lên
-    index = 0;
-  } else {
-    // Lăn chuột xuống
-    slideshow[index].classList.remove('active');
-    index = index + 1;
-    slideshow[index].classList.add('active');
-  }
-});
-});
 
-console.log(slides);
+var Slideshow_containerHeight = document.querySelectorAll('.slideshow-container');
+var c = Slideshow_containerHeight.childNodes;
+console.log(c);
+
+var oldShowSlideHeight = 0;
+window.addEventListener("wheel", function(event) {
+  if (event.deltaY > 0) {
+    console.log("lăn chuột xuống")
+    showSlideHeight(oldShowSlideHeight + 1);
+
+  } else if (event.deltaY < 0) {
+    console.log("Lăn chuột lên");
+    showSlideHeight(oldShowSlideHeight - 1);
+  }
+});
+ 
+function showSlideHeight(i) {
+  Slideshow_containerHeight[oldShowSlideHeight].classList.remove('active');
+  oldShowSlideHeight = (i + Slideshow_containerHeight.length) % Slideshow_containerHeight.length;
+  Slideshow_containerHeight[oldShowSlideHeight].classList.add('active');
+}
+console.log(Slideshow_containerHeight);
+
+
+
+
+
+
+
+
 var currentSlide = 0;
 
-function showSlide(index,n) {
-  slides[1][currentSlide].classList.remove('active');
-  currentSlide = (n + slides[1].length) % slides[1].length;
-  slides[1][currentSlide].classList.add('active');
+function showSlide(n) {
+  var slides = Slideshow_containerHeight[oldShowSlideHeight].querySelectorAll('.slide');
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
 }
 
 function nextSlide() {
-  showSlide(index,currentSlide + 1);
+  showSlide(currentSlide + 1);
 }
 
 function previousSlide() {
-  showSlide(index,currentSlide - 1);
+  showSlide(currentSlide - 1);
 }
 
 // Tự động chuyển slide sau một khoảng thời gian
@@ -67,4 +68,7 @@ prve.forEach( function(prves) {
   }
 });
 // Hiển thị slide đầu tiên khi trang được tải
-showSlide(index,currentSlide);
+showSlide(currentSlide);
+
+
+

@@ -12,7 +12,7 @@
             <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
               <div class="card card-plain">
                 <div class="card-header">
-                  <h4 class="font-weight-bolder">Sign Up</h4>
+                  <h4 class="font-weight-bolder">Create User</h4>
                   <p class="mb-0">Enter your email and password to register</p>
                 </div>
                 <div class="card-body">
@@ -71,6 +71,8 @@
                         <input type="radio" name="role" id="" value="seller" class="seller">
                         <label for="buyer">Buyer</label>
                         <input type="radio" name="role" id="" value="buyer" class="seller">
+                        <label for="buyer">Admin</label>
+                        <input type="radio" name="role" id="" value="buyer" class="admin">
                     </div>
                     <div class="form-check form-check-info text-start ps-0">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>

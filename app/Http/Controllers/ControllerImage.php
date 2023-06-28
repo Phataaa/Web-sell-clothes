@@ -1,34 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Models\category;
-use App\Models\product;
-class ControllerHome extends Controller
+use Illuminate\Http\Request;
+use App\Models\product_image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+class ControllerImage extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function detail() {
-        return view('detail');
-    }
     public function index()
     {
-        $session = Session::get('email');
-        $user = DB::table('users')->where('email', '=', $session)->get();
-        $Product = product::all();
-        $Category = category::all();
-        return view('nam', compact('user', 'Product', 'Category'));
-    }
-    public function slide()
-    {
-        return view('slide');
+        //
     }
 
     /**
@@ -49,7 +37,7 @@ class ControllerHome extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -83,7 +71,31 @@ class ControllerHome extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->isMethod('POST')) {
+            $validator = Validator::make($request->all(), [
+                'image' => 'required|image|mimes:jpg,png,jpeg'
+            ]);
+            if($validator->fails()){
+                return Redirect()->back()->withErrors($validator)->withInput();
+            }
+        if($request->hasfile('image')){
+            $image = $request->file('image');
+            $Path = public_path('product/image');
+            $name = time() . '_' . $image->getClientOriginalName();
+            $image->move($Path, $name);
+        }
+        $path = DB::table('product_image')->select('path')->where('id', '=', $id)->get();
+       $Image_path = 'product/image/'.$path;
+       if(File::exists($Image_path)){
+        File::delete($Image_path);
+       }
+       
+       $newImage  = product_image::find($id);
+       $newImage -> path = $name;
+       $newImage-> save();
+       return Redirect()->route('management_product');
+    }
+
     }
 
     /**

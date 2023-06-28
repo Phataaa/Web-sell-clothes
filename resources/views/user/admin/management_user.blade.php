@@ -63,7 +63,7 @@
                       < <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success"> <a href=""> Edit</a></span>
                         <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
-                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create.register')}}"> Create</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create_user')}}""> Create</a></span>
                       </td>
                     </tr>
                     
@@ -137,7 +137,7 @@
                         < <td class="align-middle text-center text-sm">
                           <span class="badge badge-sm bg-gradient-success"> <a href=""> Edit</a></span>
                           <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
-                          <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create.register')}}"> Create</a></span>
+                          <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create_user')}}""> Create</a></span>
                         </td>
                       </tr>
                       
@@ -210,7 +210,7 @@
                       < <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success"> <a href=""> Edit</a></span>
                         <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
-                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create.register')}}"> Create</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create_user')}}"> Create</a></span>
                       </td>
                     </tr>
                     

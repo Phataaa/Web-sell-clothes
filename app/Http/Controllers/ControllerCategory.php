@@ -42,7 +42,7 @@ class ControllerCategory extends Controller
                 'name' => 'required'
             ]);
             if($validator->fails()){
-                return Redirect()->back()->withError($validator)->withInput();
+                return Redirect()->back()->withErrors($validator)->withInput();
             }
             $newCategory = new category();
             $newCategory->name = $request->name;
@@ -89,7 +89,7 @@ class ControllerCategory extends Controller
                 'name' => 'required'
             ]);
             if($validator->fails()){
-                return Redirect()->back()->withError($validator)->withInput();
+                return redirect()->back()->withErrors($validator)->withInput();
             }
             $newCategory = category::find($id);
             $newCategory->name = $request->name;
