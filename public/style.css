@@ -1,23 +1,24 @@
 body{
     height: auto;
     width: 100%;
+    background-color: #F5F5F5;
 }
-.header{
-    height: 200px;
+header{
+    height: 100px;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
 }
-header ul {
+.header ul {
     display: flex;
     align-items: center;
 }
-header ul li img{
+.header ul li img{
     width: 150px;
     height: 100px;
     margin-left: 100px;
     
 }
-header ul li {
+.header ul li {
     list-style-type: none;
     display: inline-flex;
     font-size: 35px;
@@ -25,7 +26,7 @@ header ul li {
     font-weight: bold;
     cursor: pointer;
 }
-header ul li a{
+.header ul li a{
   text-decoration: none;
   color: black;
 }
@@ -86,6 +87,7 @@ header ul li:nth-of-type(5){
   position: relative;
   margin-left: 0;
   cursor: pointer;
+  
  }
  #account i{
   margin-top: 40px;
@@ -109,6 +111,55 @@ header ul li:nth-of-type(5){
  .icon i{
   font-size: 10px;
   padding-bottom: 5px;
+ }
+ 
+ .form_search{
+  display: none;
+  margin-top: 20px;
+ }
+ .form_search input[type="search"]{
+  height: 35px;
+  width: 950px;
+  margin-left: 600px;
+  position: relative;
+  
+ }
+ .form_search input[type="submit"]{
+  height: 35px;
+  width: 90px;
+  cursor: pointer;
+ }
+ .close_form_search{
+  border: 0;
+  position: absolute;
+  margin-top: 1px;
+  margin-left: 5px;
+  cursor: pointer;
+ }
+ .close_form_search i{
+  font-size: 35px;
+  
+ }
+ #management-account{
+  height: 150px;
+  width: 200px;
+  position: absolute;
+  right: 0;
+  background-color: #F5F5F5;
+  margin-right: 225px;
+  top:0;
+  margin-top: 100px;
+  border-radius: 25%;
+  display: none;
+ }
+ #management-account a{
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+ }
+ #management-account ul li{
+  list-style-type: none;
+  padding-bottom: 10px;
  }
 
      

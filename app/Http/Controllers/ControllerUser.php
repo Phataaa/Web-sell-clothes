@@ -118,17 +118,17 @@ class ControllerUser extends Controller
                 $name = time(). '_' . $image->getClientOriginalName();
                 $path = public_path('avatar');
                 $image ->move($path, $name);
-            }
-        $newUser = User::find($id);
-        $newUser->full_name = $request->fullname;
-        $newUser->user_name = $request->username;
-        $newUser->email = $request->email;
-        $newUser->number = $request->number;
-        $newUser->birthday = $request->birthday;
-        $newUser->address = $request->address;
-        $newUser->avatar = $name;
-        $newUser->save();
-        return redirect()->route('profile');
+                }
+            $newUser = User::find($id);
+            $newUser->full_name = $request->fullname;
+            $newUser->user_name = $request->username;
+            $newUser->email = $request->email;
+            $newUser->number = $request->number;
+            $newUser->birthday = $request->birthday;
+            $newUser->address = $request->address;
+            $newUser->avatar = $name;
+            $newUser->save();
+            return redirect()->route('profile');
             }
         }
     }
@@ -151,5 +151,35 @@ class ControllerUser extends Controller
     }
     public function create_user() {
         return view('user.create_user');
+    }
+
+    public function update_account_buyer(Request $request, $id) {
+        if($request->isMethod('Post')){
+            $validator = Validator::make($request->all(), [
+                'username' => 'required',
+                'number' => 'required',
+                'birthday' => 'required',
+                'email' => 'required|email',
+                'image' => 'required|image|mimes:jpg,png,jpeg|max:5000',
+            ]);
+            if($validator->fails()){
+                return Redirect()->back()->withErrors($validator)->withInput();
+            }
+            else{
+            if($request->hasfile('image')){
+                $image = $request->file('image');
+                $name = time() .'_'. $image->getClientOriginalName();
+                $path = public_path('avatar');
+                $image->move($path, $name);
+            }
+            $updateAccount = User::find($id);
+            $updateAccount->user_name = $request->username;
+            $updateAccount->email = $request->email;
+            $updateAccount->birthday = $request->birthday;
+            $updateAccount->avatar = $name;
+            $updateAccount->number = $request->number;
+            $updateAccount->save();
+        }
+        }
     }
 }

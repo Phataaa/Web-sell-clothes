@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('slide', 200);
-            $table->string('description', 500);
+            $table->string('description', 500)->nullable();
             $table->timestamps();
         });
     }

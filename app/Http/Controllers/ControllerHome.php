@@ -15,20 +15,27 @@ class ControllerHome extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function detail() {
-        return view('detail');
-    }
+   
     public function index()
     {
         $session = Session::get('email');
         $user = DB::table('users')->where('email', '=', $session)->get();
         $Product = product::all();
-        $Category = category::all();
-        return view('nam', compact('user', 'Product', 'Category'));
+        $Category_ao = DB::table('category')->where('category', '=', 'ao')->get();
+        $Category_quan = DB::table('category')->where('category', '=', 'quan')->get();
+        $Category_nha = DB::table('category')->where('category', '=', 'do mac nha')->get();
+        $Category_ngoai = DB::table('category')->where('category', '=', 'do mac ngoai')->get();
+        return view('user.buyer.nam', compact('user', 'Product', 'Category_ao', 'Category_quan','Category_nha', 'Category_ngoai'));
     }
-    public function slide()
-    {
-        return view('slide');
+   
+    public function search_product(Request $request) {
+            $session = Session::get('email');
+            $condition = $request->search;
+            $user = DB::table('users')->where('email', '=', $session)->get();
+            $Product = DB::table('product')->where('name', 'like', '%'.$request->search.'%')->get();
+            $image = DB::table('product_image')->where('product_id', '=', $Product[0]->id)->get();
+            return view('user.buyer.search', compact('Product', 'user', 'image', 'condition'));
+        
     }
 
     /**
@@ -36,6 +43,10 @@ class ControllerHome extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function slide()
+    {
+        return view('slide');
+    }
     public function create()
     {
         //
@@ -96,4 +107,5 @@ class ControllerHome extends Controller
     {
         //
     }
+
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('date');
             $table->integer('number')->unsigned();
             $table->string('status_delivery');
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

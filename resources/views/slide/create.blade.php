@@ -32,10 +32,15 @@
                   @endif
                   @csrf
                     <h1 style="text-align: center">Create Slide</h1>
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name">
-                  </div>
+                    <div class="input-group input-group-outline my-3">
+                    
+                      <select class="form-control" name="name" >
+                        <option value="" disabled selected hidden>Name</option>
+                        <option value="slide1">Slide 1</option>
+                        <option value="slide2">Slide 2</option>
+                        <option value="slide3">Slide 3</option>
+                      </select>
+                    </div>
                  
                   
                   <div class="input-group input-group-outline my-3">

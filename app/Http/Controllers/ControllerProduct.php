@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\category;
 use App\Models\product;
+use App\Models\feedback;
 use App\Models\product_image;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -98,7 +99,12 @@ class ControllerProduct extends Controller
      */
     public function show($id)
     {
-        //
+        $product = product::find($id);
+        $Category = category::all();
+        $session = Session::get('email');
+        $user = DB::table('users')->where('email', '=', $session)->get();
+        $Feedback = feedback::all();
+        return view('user.buyer.detail', compact('product', 'Category', 'user', 'Feedback'));
     }
 
     /**
@@ -132,8 +138,8 @@ class ControllerProduct extends Controller
                 'category' => 'required',
                 'gender' => 'required',
                 'description' => 'required',
-                'image.*' => 'required|image|mimes:jpg,png,jpeg|max:5000'
-            ]);
+                'image.*' => 'required|image|mimes:jpg,png,jpeg,avif|max:5000'
+            ]); 
             if($validator->fails()){
                 return Redirect()->back()->withErrors($validator)->withInput();
             }
@@ -187,5 +193,15 @@ class ControllerProduct extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function feedback(Request $request) {
+        $session = Session::get('email');
+        $user = DB::table('users')->where('email', '=', $session)->get();
+        $newFeedback = new feedback();
+        $newFeedback->comment = $request->comment;
+        $newFeedback->product_id = $request->product_id;
+        $newFeedback->user_id = $user[0]->id;
+        $newFeedback->save();
+        return Redirect()->back();
     }
 }

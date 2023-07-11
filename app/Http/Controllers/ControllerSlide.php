@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\slide;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 class ControllerSlide extends Controller
 {
     /**
@@ -17,7 +18,9 @@ class ControllerSlide extends Controller
     {
         $Slide1 = DB::table('slide')->where('name', '=', 'Slide1')->get();
         $Slide2 = DB::table('slide')->where('name', '=', 'Slide2')->get();
-        return view('slide', compact('Slide1', 'Slide2'));
+        $session = Session::get('email');
+        $user = DB::table('users')->where('email', '=', $session)->get();
+        return view('slide', compact('Slide1', 'Slide2','user'));
     }
 
     /**

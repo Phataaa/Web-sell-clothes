@@ -33,7 +33,16 @@
                   <div class="input-group input-group-outline my-3">
                     <input type="text" class="form-control" placeholder="Name" name="name">
                   </div>
-                 
+                  <div class="input-group input-group-outline my-3">
+                    
+                    <select class="form-control" name="category" >
+                      <option value="" disabled selected hidden>Category</option>
+                      <option value="ao">Áo </option>
+                      <option value="quan">Quần </option>
+                      <option value="do mac ngoai">Đồ mặc ngoài </option>
+                      <option value="do mac nha">Đồ mặc nhà </option>
+                    </select>
+                  </div>
                   <div class="text-center">
                     <input type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" value="Submit">
                   </div>
