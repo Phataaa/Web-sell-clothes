@@ -26,6 +26,15 @@
             margin-top: 10px;
             border-radius: 10%;
         }
+        #edit{
+            height:30px;
+            width: 100px;
+            font-size: 20px;
+            background-color: greenyellow;
+            margin-left: 110px;
+            margin-top: 10px;
+            border-radius: 10%;
+        }
         .form-buy{
             height: 450px;
             width: 500px;
@@ -94,7 +103,10 @@
             <td style="text-align:center; font-size:20px;;">
                 <div class="buy">Buy
                 </div>
-            <div id="delete"><a style="text-decoration: none;cursor: pointer;" href="">Delete</a></div></td>
+            <div id="delete"><a style="text-decoration: none;cursor: pointer;" href="">Delete</a></div>
+        
+
+            <div id="edit"><a style="text-decoration: none;cursor: pointer;" href="">Edit</a></div></td>
             
         </tr>
         @endforeach

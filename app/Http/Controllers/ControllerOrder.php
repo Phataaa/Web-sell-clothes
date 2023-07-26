@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\orders;
-use App\Models\order_detail11;
+use App\Models\order_detail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 class ControllerOrder extends Controller
@@ -24,7 +24,12 @@ class ControllerOrder extends Controller
             return view('user.buyer.order', compact('Order', 'user'));
         
     }
-
+    public function delivery_order(Request $request, $id) {
+        $delivery_order = orders::find($id);
+        $delivery_order->status_delivery = $request->status;
+        $delivery_order->save();
+        return Redirect()->back();
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -68,7 +73,7 @@ class ControllerOrder extends Controller
                 $newOrder->user_id = 1;
                 $newOrder->save(); 
                 $updateOrder_detail = order_detail::find($request->order_detail);
-                $updateOrder_detail -> order_id = $newOrder->id;
+                $updateOrder_detail -> orders_id = $newOrder->id;
                 $updateOrder_detail->save();
                 return route('index.order');
             }

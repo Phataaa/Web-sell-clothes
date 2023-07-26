@@ -121,7 +121,7 @@
        
         <div class="category">
         <ul>
-            @foreach($Category_quan as $category_nha)
+            @foreach($Category_nha as $category_nha)
             <li><a href="">{{$category_nha->name}}</a></li>
             @endforeach
         </ul>

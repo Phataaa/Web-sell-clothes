@@ -26,7 +26,7 @@
             <li>TRẺ EM</li>
             <li>TRẺ SƠ SINH</li>
             <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li>
-            <li><i class="fa-solid fa-cart-shopping"></i></li>
+            <li><a href="{{route('index.cart')}}"><i class="fa-solid fa-cart-shopping"></i></a></li>
             <li id="account">
                 <img src="{{asset('avatar/'.$user[0]->avatar)}}" alt="" srcset="">
                 <p>{{$user[0]->user_name}}</p>
@@ -40,7 +40,7 @@
     <div id="management-account">
         <ul>
             <li><a href="{{route('profile')}}">My account</a></li>
-            <li><a href="">Order</a></li>
+            <li><a href="{{route('index.order')}}">Order</a></li>
             <li><a href="">Logout</a></li>
         </ul>
     </header>

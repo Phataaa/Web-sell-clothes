@@ -103,7 +103,7 @@ class ControllerProduct extends Controller
         $Category = category::all();
         $session = Session::get('email');
         $user = DB::table('users')->where('email', '=', $session)->get();
-        $Feedback = feedback::all();
+        $Feedback = feedback::find($id);
         return view('user.buyer.detail', compact('product', 'Category', 'user', 'Feedback'));
     }
 
@@ -138,24 +138,12 @@ class ControllerProduct extends Controller
                 'category' => 'required',
                 'gender' => 'required',
                 'description' => 'required',
-                'image.*' => 'required|image|mimes:jpg,png,jpeg,avif|max:5000'
+              
             ]); 
             if($validator->fails()){
                 return Redirect()->back()->withErrors($validator)->withInput();
             }
-            if($request->hasfile('image')){
-                $Product_images = [];
-                $Images = $request->file('image');
-                foreach ($Images as $image) {
-                $path = public_path('product/image');
-                $Image_name = time(). '_' . $image->getClientOriginalName();
-                $image->move($path, $Image_name);
-                $Product_images[] = $Image_name;
-                }
-            }
-            else{
-                $image_name = 'no.jpg';
-            }
+       
             $newProduct = product::find($id);
             $newProduct->name = $request->name;
             $newProduct->quanity = $request->quanity;
@@ -166,20 +154,6 @@ class ControllerProduct extends Controller
             $newProduct->description = $request->description;
             
             $newProduct->save();
-
-            $index = 0;
-            $index1 = 0;
-            $NewProduct_image = product_image::where('product_id', $id)->get();
-            while($index1 < count($NewProduct_image)){
-                while ($index < count($Product_images)) {
-                    $NewProduct_image->path = $Product_images[0];
-                    $NewProduct_image[$index1]->save();
-                    $index++;
-                    break;
-                } 
-                  $index1++;  
-                }
-        
             return Redirect()->route('management_product');
         }
     }

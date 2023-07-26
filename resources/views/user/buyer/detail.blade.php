@@ -309,7 +309,7 @@
                 <input type="hidden" name="product_id" value="{{$product->id}}">
                 <button type="submit" class="sent-comment"><i class="fa-solid fa-paper-plane"></i></button>
             </form>
-            @foreach($Feedback as $feedback)
+            @foreach($product->feedback as $feedback)
             <div class="show-comment">
                 <img src="{{asset('avatar/'.$feedback->user->avatar)}}" alt="" srcset="" >
                 <p class="account-comment">{{$feedback->user->user_name}}</p>

@@ -12,7 +12,7 @@
               <div class="card-body">
                 <form action="{{route('update.product', $product->id)}}" method="post" enctype="multipart/form-data">
                   @csrf
-                    <h1 style="text-align: center">Create Product</h1>
+                    <h1 style="text-align: center">Edit Product</h1>
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Name</label>
                     <input type="text" class="form-control" name="name" value="{{$product->name}}">
@@ -36,8 +36,8 @@
                   <div class="input-group input-group-outline my-3">
                     
                     <select class="form-control" name="category" >
-                      <option value="" disabled selected hidden>Category</option>
-                      <option value="{{$product->category->name}}"></option>
+                      <option value="{{$product->id}}" >{{$product->category->name}}</option>
+                     
                       @foreach ($Category as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>                          
                       @endforeach
@@ -50,9 +50,7 @@
                   <div>
                     <input type="hidden" name="user" value="1">
                   </div>
-                  <div>
-                    <input type="file" name="image[]" id="" multiple>
-                  </div>
+                
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Submit</button>
                   </div>

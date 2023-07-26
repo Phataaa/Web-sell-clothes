@@ -61,12 +61,16 @@ Route::group(['prefix'=>'Admin'], function() {
     Route::get('management_user', [ControllerAdmin::class, 'management_user'])->name('management_user');
     Route::get('management_category', [ControllerAdmin::class, 'management_category'])->name('management_category');
     Route::get('management_product', [ControllerAdmin::class, 'management_product'])->name('management_product');
+    Route::get('management_slide', [ControllerAdmin::class, 'management_slide'])->name('management_slide');
+    Route::get('management_order', [ControllerAdmin::class, 'management_order'])->name('management_order');
 });
 Route::get('profile', [ControllerUser::class, 'profile'])->name('admin.profile');
 Route::get('edit_profile/{id}', [ControllerUser::class, 'editprofile'])->name('edit.profile');
 Route::post('update/{id}', [ControllerUser::class, 'update'])->name('update.profile');
 Route::get('create_user', [ControllerUser::class, 'create_user'])->name('create_user');
 Route::post('update_account_buyer/{id}', [ControllerUser::class, 'update_account_buyer'])->name('update.profile_buyer');
+Route::post('delivery_order/{id}', [ControllerOrder::class, 'delivery_order'])->name('delivery.order');
+
 
 
 //Category
@@ -81,9 +85,10 @@ Route::group(['prefix'=>'Category'], function() {
 Route::group(['prefix' =>'Product'], function() {
     Route::get('create', [ControllerProduct::class, 'create'])->name('create.product');
     Route::post('store', [ControllerProduct::class, 'store'])->name('store.product');
-    Route::get('edit/{id}', [ControllerProduct::class, 'edit'])->name('edit.product');
+   
     ROute::post('update/{id}', [ControllerProduct::class, 'update'])->name('update.product');
 });
+Route::get('edit/{id}', [ControllerProduct::class, 'edit'])->name('edit.product');
 Route::get('detail/{id}', [ControllerProduct::class, 'show'])->name('product.detail');
 Route::post('/update_image/{id}', [ControllerImage::class, 'update'])->name('update.image');
 
@@ -96,7 +101,7 @@ Route::get('search', [ControllerHome::class, 'search_product'])->name('product.s
 
 Route::get('slide_create', [ControllerSlide::class, 'create'])->name('slide.create');
 Route::post('slide_create', [ControllerSlide::class, 'store'])->name('store.slide');
-Route::get('lide', [ControllerSlide::class, 'index'])->name('slide.index');
+Route::get('home', [ControllerSlide::class, 'index'])->name('slide.index');
 Route::post('feedback', [ControllerProduct::class, 'feedback'])->name('product.feedback');
 
 

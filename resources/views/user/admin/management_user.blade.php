@@ -25,7 +25,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Birthday</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
-                        <th class="text-secondary opacity-7"></th>
+                        <th class="text-secondary opacity-7"><span class="badge badge-sm bg-gradient-success"> <a href="{{route('create_user')}}"> Create</a></span></th>
                       </tr>
                     </thead>
                     @foreach($Buyer as $buyer)
@@ -64,7 +64,7 @@
                         < <td class="align-middle text-center text-sm">
                           <span class="badge badge-sm bg-gradient-success"> <a href=""> Edit</a></span>
                           <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
-                          <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create_user')}}"> Create</a></span>
+                          
                         </td>
                       </tr>
                       
@@ -134,10 +134,9 @@
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold">{{$admin->address}}</span>
                       </td>
-                      < <td class="align-middle text-center text-sm">
+                      <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success"> <a href=""> Edit</a></span>
                         <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
-                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create_user')}}"> Create</a></span>
                       </td>
                     </tr>
                     

@@ -51,7 +51,8 @@ class ControllerAuth extends Controller
         if($finduser) {
            
             Auth::login($finduser);
-            return redirect()->route('index.home');
+            // Session::put($user);
+            return redirect()->route('slide.index');
         }
         else {
             $newUser = new User;
@@ -65,7 +66,7 @@ class ControllerAuth extends Controller
             $newUser->save();
 
             Auth::login($newUser);
-            $newUser->session()->regenerate();
+            Session::put($newUser);
             return redirect()->route('index.home');
         }
     }
