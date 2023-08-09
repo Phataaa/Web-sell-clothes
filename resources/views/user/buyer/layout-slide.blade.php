@@ -22,31 +22,38 @@
         <ul>
             <li><a href="{{route('slide.index')}}"><img src="https://1000logos.net/wp-content/uploads/2022/08/Uniqlo-logo.png" alt="" srcset="" ></a></li>
             <li><a href="{{route('index.nam')}}">NAM</a></li>
-            <li>NỮ</li>
+            <li><a href="{{route('index.nu')}}">NỮ</a></li>
             <li>TRẺ EM</li>
             <li>TRẺ SƠ SINH</li>
+            
             <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li>
             <li><a href="{{route('index.cart')}}"><i class="fa-solid fa-cart-shopping"></i></a></li>
-            <li id="account">
-                <img src="{{asset('avatar/'.$user[0]->avatar)}}" alt="" srcset="">
-                <p>{{$user[0]->user_name}}</p>
-                <i class="fa-solid fa-caret-down"></i>
-               
+            <li id="accounts">
+                <ul>
+                    <li><img src="{{asset('avatar/'.$user[0]->avatar)}}" alt="" srcset=""></li>
+                    <li>{{$user[0]->user_name}}</li>
+                    <li><i class="fa-solid fa-caret-down"></i></li>
+                    <li> <div id="management-account">
+                        <ul>
+                            <li><a href="{{route('profile')}}">My account</a></li>
+                            <li><a href="{{route('index.order')}}">Order</a></li>
+                            <li><a href="{{route('logout')}}">Logout</a></li>
+                        </ul>
+                    </div></li>
+                </ul>
+                
             </li>
         </ul>
         
     </div>
     
-    <div id="management-account">
-        <ul>
-            <li><a href="{{route('profile')}}">My account</a></li>
-            <li><a href="{{route('index.order')}}">Order</a></li>
-            <li><a href="">Logout</a></li>
-        </ul>
+   
     </header>
     <hr>
-    
-        @yield('content');
+    <section>
+        @yield('content')
+    </section>
+   
     <script>
         var form_search = document.getElementById('form_search');
         var close = document.getElementById('close_form_search');
@@ -62,7 +69,7 @@
             e.preventDefault();
             
         }
-        var account = document.getElementById('account');
+        var account = document.getElementById('accounts');
         var management_account = document.getElementById('management-account');
         account.onclick = function() {
             if(management_account.style.display==="none") {
@@ -73,5 +80,6 @@
             }
         }
     </script>
+   
 </body>
 </html>

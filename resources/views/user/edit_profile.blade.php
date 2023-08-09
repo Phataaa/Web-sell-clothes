@@ -150,7 +150,7 @@ color:#69707a;
                                 <!-- Form Group (phone number)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputPhone">Phone number</label>
-                                    <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="{{$user->number}}" name="number">
+                                    <input class="form-control" id="inputPhone" type="number" placeholder="Enter your phone number" value="{{$user->number}}" name="number">
                                 </div>
                                 <!-- Form Group (birthday)-->
                       

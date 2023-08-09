@@ -20,8 +20,11 @@ class ControllerCart extends Controller
         $Order_detail = order_detail::with('product')->whereNull('orders_id')->get();
         $session = Session::get('email');
         $user = DB::table('users')->where('email', '=', $session)->get();
-        
-        return view('user.buyer.cart', compact('Order_detail', 'user'));
+        $Category_ao = DB::table('category')->where('category', '=', 'ao')->get();
+        $Category_quan = DB::table('category')->where('category', '=', 'quan')->get();
+        $Category_nha = DB::table('category')->where('category', '=', 'do mac nha')->get();
+        $Category_ngoai = DB::table('category')->where('category', '=', 'do mac ngoai')->get();
+        return view('user.buyer.cart', compact('Order_detail', 'user', 'Category_ao', 'Category_quan','Category_nha', 'Category_ngoai'));
     }
     
     /**
@@ -96,7 +99,10 @@ class ControllerCart extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateCart = order_detail::find($id);
+        $updateCart -> amount  = $request->amount;
+        $updateCart -> save();
+        return redirect()->back();
     }
 
     /**
@@ -107,6 +113,8 @@ class ControllerCart extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteCart = order_detail::find($id);
+        $deleteCart-> delete();
+        return redirect()->back();
     }
 }

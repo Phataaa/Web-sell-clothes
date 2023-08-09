@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Validation;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 class ControllerUser extends Controller
 {
     /**
@@ -141,7 +142,16 @@ class ControllerUser extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if ($user !== null){ 
+            $image_path = "/avatar/".$user->avatar;
+            $user->delete();
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+            }
+        }
+           
+            return Redirect()->back()->with("success", "User deleted successfully");
     }
 
     public function profile() {
@@ -177,6 +187,34 @@ class ControllerUser extends Controller
             $updateAccount->email = $request->email;
             $updateAccount->birthday = $request->birthday;
             $updateAccount->avatar = $name;
+            $updateAccount->number = $request->number;
+            $updateAccount->save();
+        }
+        }
+    }
+    public function edit_account($id) {
+        $user = User::find($id);
+        return view('user.account.edit', compact('user'));
+    }
+    public function update_account(Request $request, $id) {
+        if($request->isMethod('Post')){
+            $validator = Validator::make($request->all(), [
+                'user_name' => 'required',
+                'number' => 'required',
+                'birthday' => 'required',
+                'email' => 'required|email',
+                'role' => 'required'
+            ]);
+            if($validator->fails()){
+                return Redirect()->back()->withErrors($validator)->withInput();
+            }
+            else{
+           
+            $updateAccount = User::find($id);
+            $updateAccount->user_name = $request->user_name;
+            $updateAccount->email = $request->email;
+            $updateAccount->birthday = $request->birthday;
+            $updateAccount->role = $request->role;
             $updateAccount->number = $request->number;
             $updateAccount->save();
         }

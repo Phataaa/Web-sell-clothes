@@ -6,7 +6,7 @@
     font-weight: bold;
     color: black;
   }
-  .form-edit input[type="text"], input[type="password"]{
+  .form-edit input[type="text"]{
     height: 40px;
     width: 350px;
     margin-bottom: 10px;
@@ -40,11 +40,11 @@
             <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
               <div class="card card-plain">
                 <div class="card-header">
-                  <h4 class="font-weight-bolder">Create User</h4>
+                  <h4 class="font-weight-bolder">Edit User</h4>
                   <p class="mb-0">Enter your email and password to register</p>
                 </div>
                 <div class="card-body">
-                  <form action="{{route('register.store')}}" method="POST">
+                  <form action="{{route('update.account', $user->id)}}" method="POST">
                     @if ($errors->any())
 
                     <div class="alert alert-danger">
@@ -68,32 +68,29 @@
                     <div class="form-edit">
                       <label for="form-edit">Full Name</label><br>
 
-                      <input type="text" name="full_name" value="">
+                      <input type="text" name="full_name" value="{{$user->full_name}}">
                     </div>
                     <div class="form-edit">
                         <label >User Name</label>
-                        <input type="text" name="user_name" value="">
+                        <input type="text" name="user_name" value="{{$user->user_name}}">
                     </div>
-                    <div class="form-edit">
-                      <label >Password</label>
-                      <input type="password" name="password" value="">
-                  </div>
+                    
                     <div class="form-edit">
                       <label>Email</label><br>
-                      <input type="email" name="email" value="">
+                      <input type="email" name="email" value="{{$user->email}}">
                     </div>
                     
                     <div class="form-edit">
                         <label >Birthday</label><br>
-                        <input type="date" name="birthday" value="">
+                        <input type="date" name="birthday" value="{{$user->birthday}}">
                     </div>
                     <div class="form-edit">
                         <label >Address</label>
-                        <input type="text" name="address" value="">
+                        <input type="text" name="address" value="{{$user->address}}">
                     </div>
                     <div class="form-edit">
                         <label class="form-label">Number</label>
-                        <input type="text" name="number" value="">
+                        <input type="text" name="number" value="{{$user->number}}">
                     </div>
                     <div>
                         

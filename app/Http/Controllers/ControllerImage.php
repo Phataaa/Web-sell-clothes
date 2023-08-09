@@ -26,7 +26,20 @@ class ControllerImage extends Controller
      */
     public function create()
     {
-        //
+        if($request->hasfile('image')){
+        
+            $Images = $request->file('image');
+            $path = public_path('product/image');
+            $Image_name = time(). '_' . $Images->getClientOriginalName();
+            $Images->move($path, $Image_name);
+            
+        $newProduct_image = new product_image();
+        $newProduct_image->path = $Image_name;
+        $newProduct_image->product_id = $id; 
+        $newProduct_image->save();
+        return Redirect()->back();
+        }
+    }
     }
 
     /**

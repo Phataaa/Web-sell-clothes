@@ -1,20 +1,18 @@
-@extends('user.buyer.layout')
+@extends('user.guest.layout')
 @section('content')
 <style>
     .menu{
-        height: 100%;
+        height: auto;
         width: 100%;
         margin-top: 50px;
-        display: flex;
+        display: block;
     }
     .type{
-        flex: 1;
         float: left;
         width: 20%;
         height: auto;
     }
     .products{
-        flex: 2.5;
         float: right;
         width: 75%; 
         height: auto;
@@ -110,7 +108,7 @@
         <div class="category">
         <ul>
             @foreach($Category_ao as $category_ao)
-            <li><a href="{{route('search.category', $category_ao->id)}}">{{$category_ao->name}}</a></li>
+            <li><a href="{{route('guest.search.category', $category_ao->id)}}">{{$category_ao->name}}</a></li>
             @endforeach
         </ul>
         </div>
@@ -123,7 +121,7 @@
         <div class="category">
         <ul>
             @foreach($Category_quan as $category_quan)
-            <li><a href="{{route('search.category', $category_quan->id)}}">{{$category_quan->name}}</a></li>
+            <li><a href="{{route('guest.search.category', $category_quan->id)}}">{{$category_quan->name}}</a></li>
             @endforeach
         </ul>
         </div>
@@ -136,7 +134,7 @@
         <div class="category">
         <ul>
             @foreach($Category_nha as $category_nha)
-            <li><a href="{{route('search.category', $category_nha->id)}}">{{$category_nha->name}}</a></li>
+            <li><a href="{{route('guest.search.category', $category_nha->id)}}">{{$category_nha->name}}</a></li>
             @endforeach
         </ul>
         </div>
@@ -149,15 +147,15 @@
         <div class="category">
         <ul>
             @foreach($Category_ngoai as $category_ngoai)
-            <li><a href="{{route('search.category', $category_ngoai->id)}}">{{$category_ngoai->name}}</a></li>
+            <li><a href="{{route('guest.search.category', $category_ngoai->id)}}">{{$category_ngoai->name}}</a></li>
             @endforeach
         </ul>
         </div>
     </div>
-
+    
     <div class="products">
         @foreach($Product as $product)
-        <a href="{{route('product.detail', $product->id)}}">
+        <a href="{{route('guest.product.detail', $product->id)}}">
         <div class="product">
             <img src="{{asset('product/image/'.$product->image[0]->path)}}" alt=""><br>
 
@@ -170,7 +168,6 @@
         @endforeach
     </div>
 </div>
-
 <script>
     var name1s = document.querySelectorAll('.name');
     

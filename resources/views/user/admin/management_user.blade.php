@@ -62,8 +62,8 @@
                           <span class="text-secondary text-xs font-weight-bold">{{$buyer->address}}</span>
                         </td>
                         < <td class="align-middle text-center text-sm">
-                          <span class="badge badge-sm bg-gradient-success"> <a href=""> Edit</a></span>
-                          <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
+                          <span class="badge badge-sm bg-gradient-success"> <a href="{{route('edit.account', $buyer->id)}}"> Edit</a></span>
+                          <span class="badge badge-sm bg-gradient-success"> <a href="{{route('delete.account', $buyer->id )}}"> Delete</a></span>
                           
                         </td>
                       </tr>

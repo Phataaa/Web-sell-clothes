@@ -1,37 +1,37 @@
 body{
-    height: auto;
+    height: 100%;
     width: 100%;
     background-color: #F5F5F5;
 }
-header{
-    height: 100px;
-    width: 100%;
-    margin-top: 20px;
+header {
+  height: auto;
+  width: 100%;
+  margin-top: 20px;
 }
 .header ul {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
-.header ul li img{
-    width: 150px;
-    height: 100px;
-    margin-left: 100px;
-    
+.header ul li img {
+  width: 95%; 
+  max-width: 150px; 
+  height: auto;
+  margin-left: 10%; 
 }
 .header ul li {
-    list-style-type: none;
-    display: inline-flex;
-    font-size: 35px;
-    margin-left: 50px;
-    font-weight: bold;
-    cursor: pointer;
+  list-style-type: none;
+  display: inline-flex;
+  font-size: 1.5vw; 
+  margin-left: 2%; 
+  font-weight: bold;
+  cursor: pointer;
 }
-.header ul li a{
+.header ul li a {
   text-decoration: none;
   color: black;
 }
-header ul li:nth-of-type(5){
-    margin-right: 450px;
+header ul li:nth-of-type(6) {
+  margin-left: 25%; /* Sử dụng phần trăm */
 }
 .slideshow-containerheight{
   width: 100%;
@@ -81,36 +81,28 @@ header ul li:nth-of-type(5){
     height: 80px;
     border-radius: 50%;
   }
- #account{
-  width: 350px;
-  height: 100px;
-  position: relative;
-  margin-left: 0;
-  cursor: pointer;
-  
- }
- #account i{
-  margin-top: 40px;
-  padding-left: 10px;
- }
- #account img{
-  width: 50px;
-  height: 50px;
-  padding-right: 10px;
-  margin-top: 30px;
-  border-radius: 50%;
- }
- #account p{
-  padding: auto;
- }
- .icon{
-  position: absolute;
-  margin-left: 30px;
-  bottom: 20%;
- }
- .icon i{
-  font-size: 10px;
-  padding-bottom: 5px;
+ 
+  #accounts ul li{
+    margin-left: 1rem;
+    position: relative;
+  }
+
+#accounts ul li img {
+    width: 100%; /* Sử dụng phần trăm cho chiều rộng hình ảnh */
+    max-width: 100px;
+    max-height: 100%;
+    height: auto;
+    
+    
+    border-radius: 50%;
+}
+
+
+ section{
+  height: 60%;
+  width: 100%;
+  margin-top: 50px;
+  display: block;
  }
  
  .form_search{
@@ -141,25 +133,70 @@ header ul li:nth-of-type(5){
   
  }
  #management-account{
-  height: 150px;
-  width: 200px;
-  position: absolute;
-  right: 0;
-  background-color: #F5F5F5;
-  margin-right: 225px;
-  top:0;
-  margin-top: 100px;
-  border-radius: 25%;
-  display: none;
+    display: none;
  }
+  
+  #management-account >ul {
+      display: block;
+      height: 8vw;
+      width: 8vw;
+      position: absolute;
+      right: 0;
+      background-color: black;
+      top:0;
+      margin-top: 2vw;
+      border-radius: 25%;
+      
+   }
+  
+ 
  #management-account a{
   text-decoration: none;
-  font-size: 25px;
-  color: black;
+  font-size: 1vw;
+  color: white;
  }
  #management-account ul li{
   list-style-type: none;
-  padding-bottom: 10px;
+  margin-left: 0;
+  padding-bottom: 0.5vw;
+  color: aliceblue;
+  display: block;
  }
 
-     
+footer {
+  bottom: 0;
+  height: auto;
+  width: 100%;
+  background-color: #968e8e;
+}
+footer .content-footer{
+  display: inline-block;
+  margin-left: 10vw;
+}
+.footer-header{
+  height: 3vw;
+  width: 12vw;
+  
+  margin-top: 1vw;
+  font-size: 1.2vw;
+}
+.footer-information{
+  padding-bottom: 1vw;
+}
+.footer-information a{
+  font-size: 1vw;
+  text-decoration: none;
+  color: black;
+   
+}
+.footer-icon{
+  display: inline;
+}
+.footer-icon a{
+  text-decoration: none;
+  color: black;
+  margin-right: 1vw;
+}
+.footer-icon i{
+  font-size: 2vw;
+}

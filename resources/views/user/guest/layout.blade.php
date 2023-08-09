@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="form_search" id="form_search">
-            <form action="{{route('product.search')}}" method="get">
+            <form action="{{route('guest.product.search')}}" method="get">
                 <input type="search" name="search" id="">
                 <input type="submit" value="Search">
                 <a class="close_form_search" id="close_form_search"><i class="fa-solid fa-xmark"></i></a>
@@ -20,17 +20,15 @@
         </div>
         <div class="header" id="header">
         <ul>
-            <li><a href="{{route('slide.index')}}"><img src="https://1000logos.net/wp-content/uploads/2022/08/Uniqlo-logo.png" alt="" srcset="" ></a></li>
-            <li><a href="{{route('index.nam')}}">NAM</a></li>
-            <li>NỮ</li>
-            <li>TRẺ EM</li>
-            <li>TRẺ SƠ SINH</li>
+            <li><a href="{{route('guest.slide.index')}}"><img src="https://1000logos.net/wp-content/uploads/2022/08/Uniqlo-logo.png" alt="" srcset="" ></a></li>
+            <li><a href="{{route('guest')}}">NAM</a></li>
+            <li><a href="{{route('guest')}}">NỮ</a></li>
+            <li><a href="{{route('guest')}}">TRẺ EM</a></li>
+            <li><a href="{{route('guest')}}">TRẺ SƠ SINH</a></li>
             <li id="search"><i class="fa-solid fa-magnifying-glass"></i></li>
             <li><a href="{{route('index.cart')}}"><i class="fa-solid fa-cart-shopping"></i></a></li>
-            <li id="account">
-                <img src="{{asset('avatar/'.$user[0]->avatar)}}" alt="" srcset="">
-                <p>{{$user[0]->user_name}}</p>
-                <i class="fa-solid fa-caret-down"></i>
+            <li >
+                <a href="{{route('showLogin')}}">Sign In</a>
                
             </li>
         </ul>
@@ -41,7 +39,7 @@
         <ul>
             <li><a href="{{route('profile')}}">My account</a></li>
             <li><a href="{{route('index.order')}}">Order</a></li>
-            <li><a href="">Logout</a></li>
+            <li><a href="">Login</a></li>
         </ul>
     </header>
     <hr>

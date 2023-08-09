@@ -1,11 +1,11 @@
-@extends('user.buyer.layout')
+@extends('user.guest.layout')
 @section('content')
 <style>
     .Images{
         height: auto;
         width: 50%;
         float: left;
-        box-sizing: border-box;
+       
         display: block;
     }
     .image{
@@ -97,57 +97,62 @@
     }
 
     body{
-        height: auto;
-        width: 100%;
-        background-color: #F5F5F5;
-}
-header {
-  height: auto;
-  width: 100%;
-  margin-top: 20px;
-}
-.detail{
-    display: flex;
-}
-.header ul {
-  display: flex;
-  align-items: center;
-}
-.header ul li img {
-  width: 95%; 
-  max-width: 150px; 
-  height: auto;
-  margin-left: 10%; 
-}
-.header ul li {
-  list-style-type: none;
-  display: inline-flex;
-  font-size: 1.5vw; 
-  margin-left: 2%; 
-  font-weight: bold;
-  cursor: pointer;
-}
-.header ul li a {
-  text-decoration: none;
-  color: black;
-}
-header ul li:nth-of-type(6) {
-  margin-left: 25%; /* Sử dụng phần trăm */
-}
-#accounts ul li{
-    margin-left: 1rem;
-    position: relative;
-  }
-
-#accounts ul li img {
-    width: 100%; /* Sử dụng phần trăm cho chiều rộng hình ảnh */
-    max-width: 100px;
-    max-height: 100%;
     height: auto;
-    
-    
-    border-radius: 50%;
+    width: 100%;
+      background-color: #F5F5F5;
 }
+        .header{
+            height: 100px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .header ul {
+            display: flex;
+            align-items: center;
+        }
+        .header ul li img{
+            width: 150px;
+            height: 100px;
+            margin-left: 100px;
+            
+        }
+        .header ul li {
+            list-style-type: none;
+            display: inline-flex;
+            font-size: 35px;
+            margin-left: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .header ul li a{
+            text-decoration: none;
+            color: black;
+        }
+        .header ul li:nth-of-type(5){
+            margin-right: 450px;
+        }
+
+        #account{
+            width: 350px;
+            height: 100px;
+            position: relative;
+            margin-left: 0;
+            cursor: pointer;
+        }
+        #account i{
+            margin-top: 40px;
+            padding-left: 10px;
+        }
+        #account img{
+            width: 50px;
+            height: 50px;
+            padding-right: 10px;
+            margin-top: 30px;
+            border-radius: 50%;
+        }
+        #account p{
+            padding: auto;
+        }
         .icon{
             position: absolute;
             margin-left: 30px;
@@ -159,9 +164,8 @@ header ul li:nth-of-type(6) {
         }
         .order-detail{
             background: #F5F5F5;
-            top: 200px;
-            /* margin-top: 450px; */
-            margin-left: -600px;
+            margin-top: 450px;
+            margin-left: 1000px;
             width: 300px;
             height: 200px;
             position: relative;
@@ -171,7 +175,7 @@ header ul li:nth-of-type(6) {
 
         .order-detail label{
             font-size: 25px;
-            /* margin-left: -90px; */
+            margin-left: -90px;
         }
         .order-detail input[type="number"]{
             margin-top: 50px;
@@ -181,10 +185,10 @@ header ul li:nth-of-type(6) {
         .order-detail input[type="submit"]{
             margin-top: 15px;
             font-size: 20px;
-            margin-left: 200px
+            
         }
         .order-detail i{
-            margin-left: 250px;
+            margin-left: 150px;
             cursor: pointer;
         }
         .form_search{
@@ -215,46 +219,31 @@ header ul li:nth-of-type(6) {
         
         }
         #management-account{
-    display: none;
- }
-  
-  #management-account >ul {
-      display: block;
-      height: 8vw;
-      width: 8vw;
-      position: absolute;
-      right: 0;
-      background-color: black;
-      top:0;
-      margin-top: 2vw;
-      border-radius: 25%;
-      
-   }
-  
- 
- #management-account a{
-  text-decoration: none;
-  font-size: 1vw;
-  color: white;
- }
- #management-account ul li{
-  list-style-type: none;
-  margin-left: 0;
-  padding-bottom: 0.5vw;
-  color: aliceblue;
-  display: block;
- }
+            height: 150px;
+            width: 200px;
+            position: absolute;
+            right: 0;
+            background-color: #F5F5F5;
+            margin-right: 225px;
+            top:0;
+            margin-top: 100px;
+            border-radius: 25%;
+            display: none;
+        }
+        #management-account a{
+            text-decoration: none;
+            font-size: 25px;
+            color: black;
+        }
+        #management-account ul li{
+            list-style-type: none;
+            padding-bottom: 10px;
+        }
         .comment{
             width: 100%;
             height: auto;
             margin-top: 800px;
             margin-left: 100px
-        }
-        .comment button{
-            
-            position: absolute;
-            margin-top: -55px ;
-            margin-left: 1050px;
         }
         .comment h1{
             font-size: 45px;
@@ -264,8 +253,7 @@ header ul li:nth-of-type(6) {
             border: 0;
             height: 80px;
             width: 1100px;
-            border-radius: 2%;
-            position: relative; 
+            border-radius: 2%; 
             font-size: 20px;
         }
         .sent-comment{
@@ -290,44 +278,6 @@ header ul li:nth-of-type(6) {
         .show-comment{
             padding-top: 20px;
         }
-    
-footer {
-  bottom: 0;
-  height: auto;
-  width: 100%;
-  background-color: #968e8e;
-}
-footer .content-footer{
-  display: inline-block;
-  margin-left: 10vw;
-}
-.footer-header{
-  height: 3vw;
-  width: 12vw;
-  
-  margin-top: 1vw;
-  font-size: 1.2vw;
-}
-.footer-information{
-  padding-bottom: 1vw;
-}
-.footer-information a{
-  font-size: 1vw;
-  text-decoration: none;
-  color: black;
-   
-}
-.footer-icon{
-  display: inline;
-}
-.footer-icon a{
-  text-decoration: none;
-  color: black;
-  margin-right: 1vw;
-}
-.footer-icon i{
-  font-size: 2vw;
-}
 </style>
 <div class="detail">
     <div class="Images">
@@ -351,15 +301,7 @@ footer .content-footer{
         </div>
         <div class="comment">
             <h1>Comment</h1>
-            <img src="{{asset('avatar/'.$user[0]->avatar)}}" alt="" srcset="" >
-            <p class="account-comment">{{$user[0]->user_name}}</p>
-            <form action="{{route('product.feedback')}}" method="post">
-                @csrf
-                <input type="text" name="comment" id="">
-                <button type="submit" class="sent-comment"><i class="fa-solid fa-paper-plane"></i></button>
-                <input type="hidden" name="product_id" value="{{$product->id}}">
-                
-            </form>
+           
             @foreach($product->feedback as $feedback)
             <div class="show-comment">
                 <img src="{{asset('avatar/'.$feedback->user->avatar)}}" alt="" srcset="" >
@@ -383,28 +325,27 @@ footer .content-footer{
     
     
     </div>
-    <div class="background">
-        <div class="order-detail" id="order-detail">
-    
-            <i id="close" class="fa-solid fa-xmark"></i>
-            <form action="{{route('product.cart')}}" method="POST">
-                @csrf
-                <div>
-                    <label for="amount">Amount</label>
-                    <input type="number" name="amount" id="">
-                </div>
-                <input type="hidden" name="product_id", value="{{$product->id}}">
-                <input type="hidden" name="price" value="{{$product->price}}">
-                <input type="submit" value="Add">
-            </form>
-        </div>
+</div>
+
+<div class="background">
+    <div class="order-detail" id="order-detail">
+
+        <i id="close" class="fa-solid fa-xmark"></i>
+        <form action="{{route('product.cart')}}" method="POST">
+            @csrf
+            <div>
+                <label for="amount">Amount</label>
+                <input type="number" name="amount" id="">
+            </div>
+            <input type="hidden" name="product_id", value="{{$product->id}}">
+            <input type="hidden" name="price" value="{{$product->price}}">
+            <input type="submit" value="Add">
+        </form>
     </div>
 </div>
 
-
-
 <script>
-     var currentSlide = 0;
+    var currentSlide = 0;
     var slides_detail = document.querySelectorAll('.slideDetail');
     var image = document.querySelectorAll('.image img');
     console.log(slides_detail);
@@ -447,8 +388,6 @@ prve.forEach( function(prves) {
 });
 // Hiển thị slide đầu tiên khi trang được tải
 showSlide(currentSlide);
-// Hiển thị slide đầu tiên khi trang được tải
-
 var add_cart = document.getElementById('add');
 console.log(add_cart);
 var order_detail = document.getElementById("order-detail");

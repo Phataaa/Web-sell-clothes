@@ -50,6 +50,49 @@
         margin-left: 20px;
         margin-bottom: 10px;
       }
+      .form-buy{
+            height: 350px;
+            width: 400px;
+            background-color: bisque;
+            position: relative;
+            margin-left: 800px;
+            display: none;
+            border-radius: 25px;
+        }
+        .form-buy label{
+            font-size: 25px;
+            margin-top: 5px;
+            margin-left: 30px;
+        }
+       
+        .form-buy input[type="number"]{
+            height: 30px;
+            width: 300px;
+            font-size: 25px;
+            margin-top: 5px;
+            margin-left: 30px;
+        }
+        .form-buy input[type="textarea"]{
+            height: 80px;
+            width: 300px;
+            font-size: 15px;
+            margin-left: 20px;
+        }
+        .form-buy input[type="submit"]{
+            font-size: 20px;
+            margin-left: 250px;
+            height: 35px;
+            width: 100px;
+            margin-top: 20px;
+            background-color: antiquewhite;
+            cursor: pointer ;
+        }
+        .close{
+            margin-left: 450px;
+            font-size: 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
     </style>
     <div class="container-fluid py-4">
       <div class="row">
@@ -96,14 +139,14 @@
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success"> <a href="" class="edit">  {{$order->status_delivery}}</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="" >  {{$order->status_delivery}}</a></span>
                        
                       </td>
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold" >{{$order_details->product->price}}$</span>
                       </td>
                      <td>
-                        {{$order_details->amount}}<
+                        {{$order_details->amount}}
                      </td>
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold">{{$order_details->total}}$</span>
@@ -116,7 +159,7 @@
                       </td>
                    
                        <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('edit.product', $order->id)}}"> Edit</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="" class="edit"> Edit</a></span>
                         <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
                         <span class="badge badge-sm bg-gradient-success"> <a href="" class="delivery"> Delivery status adjustment</a></span>
                       </td>
@@ -172,7 +215,36 @@
         </form> 
         @endforeach
       </div>
-     
+      @forEach($Order as $order)
+      <div class="form-buy" id="form-buy">
+      <button style="border: 0;" class="close"> <i id="close" class="fa-solid fa-xmark"></i> </button>
+       <form action="{{route('edit.order', $order->id)}}" method="post">
+           @csrf
+           <div>
+               <label for="full-name">Total</label><br>
+                <input type="number" name="total" id="" value="{{$order->total}}">
+
+               <input type="hidden" name="full_name" id="" value="{{$order->name}}">
+           </div>
+           <div>
+               
+               <input type="hidden" name="address" id="" value="{{$order->address}}">
+           </div>
+           <div>
+               
+               <input type="hidden" name="number" id="" value="0{{$order->number}}">
+           </div>
+           <div>
+           
+               <input type="hidden" name="note" id="" value="{{$order->note}}">
+           </div>
+           @foreach($order->order_detail as $order_details)
+           <input type="hidden" name="total" value="{{$order_details->total}}">
+           @endforeach
+           <input type="submit" value="Change">
+       </form>
+      </div>
+      @endforeach
       <script>
         var Edits = document.querySelectorAll('.delivery');
         var Views = document.querySelectorAll('.view');
@@ -193,6 +265,24 @@
             Edit_images[index].style.display = "none";
           }
         });
+    var buys = document.querySelectorAll('.edit');
+    var form = document.querySelectorAll('.form-buy');
+    var closes = document.querySelectorAll('.close');
+    console.log(buys);
+    console.log(form);
+    console.log(closes);
+    buys.forEach((buy, index)=> {
+    buy.onclick = function(e) {
+        e.preventDefault();
+
+        form[index].style.display = "block";
+    }
+     });
+    closes.forEach((close, index)=> {
+    close.onclick = function() {
+        form[index].style.display = "none";
+    }
+     });
         // Views.forEach((view, index) => {
         //   view.onclick = function(e) {
         //     e.preventDefault();

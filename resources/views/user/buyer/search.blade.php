@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('user.buyer.layout')
 @section('content')
 <style>
     .product{

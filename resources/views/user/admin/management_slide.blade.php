@@ -46,8 +46,8 @@
                       </td>
                     
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('edit.category', $slide1->id)}}"> Edit</a></span>
-                        <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('edit.slide', $slide1->id)}}"> Edit</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('delete.slide', $slide1->id)}}"> Delete</a></span>
                         
                       </td>
                     </tr>
@@ -79,7 +79,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
                         <th class="align-middle text-center text-sm"> 
                           
-                          <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create.category')}}">Create</a></span></th>
+                          <span class="badge badge-sm bg-gradient-success"> <a href="{{route('slide.create')}}">Create</a></span></th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
                     </thead>
@@ -99,9 +99,9 @@
                         </td>
                       
                         <td class="align-middle text-center text-sm">
-                          <span class="badge badge-sm bg-gradient-success"> <a href="{{route('edit.category', $slide2->id)}}"> Edit</a></span>
+                          <span class="badge badge-sm bg-gradient-success"> <a href=""> Edit</a></span>
                           <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
-                          <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create.category')}}">Create</a></span>
+                          
                         </td>
                       </tr>
                       

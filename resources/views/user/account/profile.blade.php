@@ -81,7 +81,7 @@
         <input type="submit" value="Save">
 </div>
 <div class="image">
-    <img src="phat.jpg" alt="" srcset="">
+    <img src="{{asset('avatar/'.$user[0]->avatar)}}" alt="" srcset="">
     <input type="file" name="image" id="">
 </div><br>
 

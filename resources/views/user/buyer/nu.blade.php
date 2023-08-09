@@ -2,7 +2,7 @@
 @section('content')
 <style>
     .menu{
-        height: 100%;
+        height: auto;
         width: 100%;
         margin-top: 50px;
         display: flex;
@@ -96,6 +96,43 @@
         height: 4vw;
         font-size: 1.5vw;   
     }
+    footer {
+  
+  height: auto;
+  width: 100%;
+  background-color: #968e8e;
+}
+footer .content-footer{
+  display: inline-block;
+  margin-left: 10vw;
+}
+.footer-header{
+  height: 3vw;
+  width: 12vw;
+  
+  margin-top: 1vw;
+  font-size: 1.2vw;
+}
+.footer-information{
+  padding-bottom: 1vw;
+}
+.footer-information a{
+  font-size: 1vw;
+  text-decoration: none;
+  color: black;
+   
+}
+.footer-icon{
+  display: inline;
+}
+.footer-icon a{
+  text-decoration: none;
+  color: black;
+  margin-right: 1vw;
+}
+.footer-icon i{
+  font-size: 2vw;
+}
 </style>
 
 <div class="menu">
@@ -154,7 +191,7 @@
         </ul>
         </div>
     </div>
-
+    
     <div class="products">
         @foreach($Product as $product)
         <a href="{{route('product.detail', $product->id)}}">
@@ -170,7 +207,6 @@
         @endforeach
     </div>
 </div>
-
 <script>
     var name1s = document.querySelectorAll('.name');
     

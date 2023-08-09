@@ -1,4 +1,4 @@
-@extends('user.buyer.layout-slide');
+@extends('user.guest.layout');
 @section('content')
 {{-- <div class="slideshow-container">
     <div class="slide">

@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\category;
 use App\Models\product;
 use App\Models\feedback;
+use App\Models\User;
 use App\Models\product_image;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 class ControllerProduct extends Controller
 {
     /**
@@ -50,7 +52,7 @@ class ControllerProduct extends Controller
                 'gender' => 'required',
             
                 'price' =>'required',
-                'image.*' => 'required|image|mimes:jpg,png,jpeg,avif|max:5000'
+                'image.*' => 'required|image|mimes:jpg,png,jpeg|max:5000'
             ]);
             if($validator->fails()){
                 return redirect()->back()->withErrors($validator)->withInput();
@@ -166,7 +168,22 @@ class ControllerProduct extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product_images = product_image::where('product_id', $id)->get();
+
+        foreach ($product_images  as $product_image ) {
+            $image_path = "/product/image/".$product_image->path;
+            if(File::exists($image_path)) {
+                File::delete($image_path);
+                }
+            $product_image ->delete();
+        }
+        
+        $product = Product::find($id);
+        if ($product !== null){
+        $product->delete();
+        return redirect()->back()->with("success", "Product deleted successfully");
+        }
+      
     }
     public function feedback(Request $request) {
         $session = Session::get('email');
@@ -178,4 +195,33 @@ class ControllerProduct extends Controller
         $newFeedback->save();
         return Redirect()->back();
     }
+
+    public function search_category($id) {
+        $Product = product::where('category_id',$id)->get();
+        $session = Session::get('email');
+        $user = DB::table('users')->where('email', '=', $session)->get();
+        $Category_ao = DB::table('category')->where('category', '=', 'ao')->get();
+        $Category_quan = DB::table('category')->where('category', '=', 'quan')->get();
+        $Category_nha = DB::table('category')->where('category', '=', 'do mac nha')->get();
+        $Category_ngoai = DB::table('category')->where('category', '=', 'do mac ngoai')->get();
+        return view ('user.buyer.search-category', compact('Product','Category_ao', 'Category_quan','Category_nha', 'Category_ngoai', 'user'));
+    }
+    public function guest_search_category($id) {
+        $Product = product::where('category_id',$id)->get();
+      
+       
+        $Category_ao = DB::table('category')->where('category', '=', 'ao')->get();
+        $Category_quan = DB::table('category')->where('category', '=', 'quan')->get();
+        $Category_nha = DB::table('category')->where('category', '=', 'do mac nha')->get();
+        $Category_ngoai = DB::table('category')->where('category', '=', 'do mac ngoai')->get();
+        return view ('user.guest.search-category', compact('Product','Category_ao', 'Category_quan','Category_nha', 'Category_ngoai'));
+    }
+    public function guest_show($id)
+    {
+        $product = product::find($id);
+        $Category = category::all();
+        $Feedback = feedback::find($id);
+        return view('user.guest.detail', compact('product', 'Category', 'Feedback'));
+    }
+    
 }
