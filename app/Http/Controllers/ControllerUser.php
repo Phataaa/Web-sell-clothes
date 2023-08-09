@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Validation;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 class ControllerUser extends Controller
 {
     /**
@@ -118,17 +119,17 @@ class ControllerUser extends Controller
                 $name = time(). '_' . $image->getClientOriginalName();
                 $path = public_path('avatar');
                 $image ->move($path, $name);
-            }
-        $newUser = User::find($id);
-        $newUser->full_name = $request->fullname;
-        $newUser->user_name = $request->username;
-        $newUser->email = $request->email;
-        $newUser->number = $request->number;
-        $newUser->birthday = $request->birthday;
-        $newUser->address = $request->address;
-        $newUser->avatar = $name;
-        $newUser->save();
-        return redirect()->route('profile');
+                }
+            $newUser = User::find($id);
+            $newUser->full_name = $request->fullname;
+            $newUser->user_name = $request->username;
+            $newUser->email = $request->email;
+            $newUser->number = $request->number;
+            $newUser->birthday = $request->birthday;
+            $newUser->address = $request->address;
+            $newUser->avatar = $name;
+            $newUser->save();
+            return redirect()->route('profile');
             }
         }
     }
@@ -141,7 +142,16 @@ class ControllerUser extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if ($user !== null){ 
+            $image_path = "/avatar/".$user->avatar;
+            $user->delete();
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+            }
+        }
+           
+            return Redirect()->back()->with("success", "User deleted successfully");
     }
 
     public function profile() {
@@ -151,5 +161,63 @@ class ControllerUser extends Controller
     }
     public function create_user() {
         return view('user.create_user');
+    }
+
+    public function update_account_buyer(Request $request, $id) {
+        if($request->isMethod('Post')){
+            $validator = Validator::make($request->all(), [
+                'username' => 'required',
+                'number' => 'required',
+                'birthday' => 'required',
+                'email' => 'required|email',
+                'image' => 'required|image|mimes:jpg,png,jpeg|max:5000',
+            ]);
+            if($validator->fails()){
+                return Redirect()->back()->withErrors($validator)->withInput();
+            }
+            else{
+            if($request->hasfile('image')){
+                $image = $request->file('image');
+                $name = time() .'_'. $image->getClientOriginalName();
+                $path = public_path('avatar');
+                $image->move($path, $name);
+            }
+            $updateAccount = User::find($id);
+            $updateAccount->user_name = $request->username;
+            $updateAccount->email = $request->email;
+            $updateAccount->birthday = $request->birthday;
+            $updateAccount->avatar = $name;
+            $updateAccount->number = $request->number;
+            $updateAccount->save();
+        }
+        }
+    }
+    public function edit_account($id) {
+        $user = User::find($id);
+        return view('user.account.edit', compact('user'));
+    }
+    public function update_account(Request $request, $id) {
+        if($request->isMethod('Post')){
+            $validator = Validator::make($request->all(), [
+                'user_name' => 'required',
+                'number' => 'required',
+                'birthday' => 'required',
+                'email' => 'required|email',
+                'role' => 'required'
+            ]);
+            if($validator->fails()){
+                return Redirect()->back()->withErrors($validator)->withInput();
+            }
+            else{
+           
+            $updateAccount = User::find($id);
+            $updateAccount->user_name = $request->user_name;
+            $updateAccount->email = $request->email;
+            $updateAccount->birthday = $request->birthday;
+            $updateAccount->role = $request->role;
+            $updateAccount->number = $request->number;
+            $updateAccount->save();
+        }
+        }
     }
 }

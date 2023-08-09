@@ -6,10 +6,9 @@
       .edit_image{
         background-color: aliceblue;
         height: 650px;
-        display: block;
         width: 1000px;
         left: 25%;
-        top: 25%;
+        
         display: none;
         position: relative;
         
@@ -17,13 +16,29 @@
       .edit_image input[type="submit"]{
         margin-bottom: 50px;
       }
+      .add_image input[type="submit"]{
+        margin-top: 20px;
+        margin-left: 200px;
+      }
+      .add_image input[type="file"]{
+        margin-left: 5px;
+        margin-top: 15px;
+      }
+      .add_image{
+        background-color: aliceblue;
+        height: 100px;
+        width: 300px;
+        left: 35%;
+        display: none;
+        position: relative;
+        
+      }
       .view_image{
         background-color: aliceblue;
         height: 500px;
         display: block;
         width: 900px;
         left: 25%;
-        top: 25%;
         position: relative;
         display: none;
       }
@@ -74,7 +89,7 @@
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Gender</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Seller</th>
+                     
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
@@ -97,7 +112,7 @@
                       <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success"> <a href="" class="edit"> Edit</a></span>
                         <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
-                        <span class="badge badge-sm bg-gradient-success"> <a href="">Add</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="" class="add">Add</a></span>
                         <span class="badge badge-sm bg-gradient-success"> <a href="" class="view"> View</a></span>
                       </td>
                       <td class="align-middle text-center">
@@ -118,12 +133,10 @@
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold">{{$product->description}}</span>
                       </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">{{$product->user->user_name}}</span>
-                      </td>
+                      
                        <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success"> <a href="{{route('edit.product', $product->id)}}"> Edit</a></span>
-                        <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('product.delete', $product->id)}}"> Delete</a></span>
                         <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create.product')}}">Create</a></span>
                         <span class="badge badge-sm bg-gradient-success"> <a href=""> View</a></span>
                       </td>
@@ -181,15 +194,34 @@
         </div>
         </form>
         @endforeach
+        
+      </div>
+      
+      <div class="add_image">
+        <div class="icon_add">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+        <form action="{{route('add.image', $product->id )}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <input type="file" name="image" id=""> <br>
+          <input type="submit" value="Add">
+        </form>
       </div>
       @endforeach 
+      
        <script>
         var Edits = document.querySelectorAll('.edit');
         var Views = document.querySelectorAll('.view');
+        var Adds = document.querySelectorAll('.add');
+        var Delete = document.querySelectorAll('.delete');
         var Edit_images = document.querySelectorAll('.edit_image');
-        var View_images = document.querySelectorAll('.view_image')
+        var Add_images = document.querySelectorAll('.add_image');
+        var View_images = document.querySelectorAll('.view_image');
+        var Delete_images = document.querySelectorAll('.delete_image')
         var Icons_edits = document.querySelectorAll('.icon_edit');
+        var Icons_adds = document.querySelectorAll('.icon_add');
         var Icons_views = document.querySelectorAll('.icon_view');
+        var Icons_deletes = document.querySelectorAll('.icon_delete');
         console.log(Edits);
         console.log(Edit_images);
         Edits.forEach((edit, index) => {
@@ -201,6 +233,18 @@
         Icons_edits.forEach((icon_edit, index) => {
           icon_edit.onclick = function(e) {
             Edit_images[index].style.display = "none";
+          }
+        });
+      
+        Adds.forEach((add, index) => {
+          add.onclick = function(e) {
+            e.preventDefault();
+            Add_images[index].style.display = "block";          
+          }
+        });
+        Icons_adds.forEach((icon_add, index) => {
+          icon_add.onclick = function(e) {
+            Add_images[index].style.display = "none";
           }
         });
         Views.forEach((view, index) => {

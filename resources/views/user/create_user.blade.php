@@ -1,5 +1,33 @@
 @extends('auth.layout');
 @section('content')
+<style>
+  .form-edit label{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+  }
+  .form-edit input[type="text"], input[type="password"]{
+    height: 40px;
+    width: 350px;
+    margin-bottom: 10px;
+    border-radius: 5px; 
+    margin-left: 5px;
+  }
+  .form-edit input[type="email"]{
+    height: 40px;
+    width: 350px;
+    margin-bottom: 10px;
+    border-radius: 5px; 
+    margin-left: 5px;
+  }
+  .form-edit input[type="date"]{
+    height: 40px;
+    width: 350px;
+    margin-bottom: 10px;
+    border-radius: 5px; 
+    margin-left: 5px;
+  }
+</style>
 <main class="main-content  mt-0">
     <section>
       <div class="page-header min-vh-100">
@@ -37,38 +65,38 @@
                 
                     @endif
                     @csrf
-                    <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Full Name</label>
-                      <input type="text" class="form-control" name="full_name">
+                    <div class="form-edit">
+                      <label for="form-edit">Full Name</label><br>
+
+                      <input type="text" name="full_name" value="">
                     </div>
-                    <div class="input-group input-group-outline mb-3">
-                        <label class="form-label">User Name</label>
-                        <input type="text" class="form-control" name="user_name">
+                    <div class="form-edit">
+                        <label >User Name</label>
+                        <input type="text" name="user_name" value="">
+                    </div>
+                    <div class="form-edit">
+                      <label >Password</label>
+                      <input type="password" name="password" value="">
+                  </div>
+                    <div class="form-edit">
+                      <label>Email</label><br>
+                      <input type="email" name="email" value="">
                     </div>
                     
-                    <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Email</label>
-                      <input type="email" class="form-control" name="email">
+                    <div class="form-edit">
+                        <label >Birthday</label><br>
+                        <input type="date" name="birthday" value="">
                     </div>
-                    <div class="input-group input-group-outline mb-3">
-                      <label class="form-label">Password</label>
-                      <input type="password" class="form-control" name="password">
+                    <div class="form-edit">
+                        <label >Address</label>
+                        <input type="text" name="address" value="">
                     </div>
-                    <div class="input-group input-group-outline mb-3">
-                        <label class="form-label">Birthday</label>
-                        <input type="text" class="form-control" name="birthday">
-                    </div>
-                    <div class="input-group input-group-outline mb-3">
-                        <label class="form-label">Address</label>
-                        <input type="text" class="form-control" name="address">
-                    </div>
-                    <div class="input-group input-group-outline mb-3">
+                    <div class="form-edit">
                         <label class="form-label">Number</label>
-                        <input type="text" class="form-control" name="number">
+                        <input type="text" name="number" value="">
                     </div>
                     <div>
-                        <label for="seller">Seller</label>
-                        <input type="radio" name="role" id="" value="seller" class="seller">
+                        
                         <label for="buyer">Buyer</label>
                         <input type="radio" name="role" id="" value="buyer" class="seller">
                         <label for="buyer">Admin</label>

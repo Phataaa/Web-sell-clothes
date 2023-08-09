@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\slide;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 class ControllerSlide extends Controller
 {
     /**
@@ -17,7 +19,16 @@ class ControllerSlide extends Controller
     {
         $Slide1 = DB::table('slide')->where('name', '=', 'Slide1')->get();
         $Slide2 = DB::table('slide')->where('name', '=', 'Slide2')->get();
-        return view('slide', compact('Slide1', 'Slide2'));
+        $session = Session::get('email');
+        $user = DB::table('users')->where('email', '=', $session)->get();
+        return view('slide', compact('Slide1', 'Slide2','user'));
+    }
+    public function guest_index()
+    {
+        $Slide1 = DB::table('slide')->where('name', '=', 'Slide1')->get();
+        $Slide2 = DB::table('slide')->where('name', '=', 'Slide2')->get();
+       
+        return view('user.guest.slide', compact('Slide1', 'Slide2'));
     }
 
     /**
@@ -64,7 +75,7 @@ class ControllerSlide extends Controller
             $newSlide->slide = $Image_name;
             $newSlide->description = $request->description;
             $newSlide->save();
-
+            return Redirect()->back();
             
         }
     }
@@ -88,7 +99,9 @@ class ControllerSlide extends Controller
      */
     public function edit($id)
     {
-        //
+        $Slide = slide::find($id);
+        return view('slide.edit', compact('Slide'));
+
     }
 
     /**
@@ -100,7 +113,34 @@ class ControllerSlide extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->isMethod('POST')){
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'image' => 'required|image|mimes:jpg,png,jpeg,avif|max:5000'
+            ]);
+            if($validator->fails()){
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            if($request->hasfile('image')){
+             
+                $Images = $request->file('image');
+               
+                $path = public_path('slide/image');
+                $Image_name = time(). '_' . $Images->getClientOriginalName();
+                $Images->move($path, $Image_name);
+              
+                
+            }
+            else{
+                $image_name = 'no.jpg';
+            }
+            $updateSlide = slide::find($id);
+            $updateSlide->name = $request->name;
+            $updateSlide->slide = $Image_name;
+            $updateSlide->description = $request->description;
+            $updateSlide->save();
+            return redirect()->route('management_slide');
+        }
     }
 
     /**
@@ -111,6 +151,15 @@ class ControllerSlide extends Controller
      */
     public function destroy($id)
     {
-        //
+        $slide = slide::find($id);
+        if ($slide !== null){ 
+            $slide_path = "/slide/image/".$slide->slide;
+            $slide->delete();
+        if(File::exists($slide_path)) {
+            File::delete($slide_path);
+            }
+        }
+           
+            return Redirect()->back()->with("success", "User deleted successfully");
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\category;
+use App\Models\product;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Validation;
 use Illuminate\Support\Facades\Validator;
 class ControllerCategory extends Controller
@@ -39,13 +41,15 @@ class ControllerCategory extends Controller
     {
         if($request->isMethod('POST')) {
             $validator = Validator::make($request->all(), [
-                'name' => 'required'
+                'name' => 'required',
+                'category' => 'required'
             ]);
             if($validator->fails()){
                 return Redirect()->back()->withErrors($validator)->withInput();
             }
             $newCategory = new category();
             $newCategory->name = $request->name;
+            $newCategory->category = $request->category;
             $newCategory->save();
             return Redirect()->route('management_category');
         }
@@ -106,6 +110,18 @@ class ControllerCategory extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Product = product::where('category_id', $id)->get();
+
+        foreach ($Product as $product) {
+            foreach($product->image as $image){
+                $file = "/product/image/".$image->path;
+                File::delete($file);
+                $image->delete();
+            }
+            $product->delete();
+        }
+        $category = category::find($id);
+        $category->delete();
+        return Redirect()->back();
     }
 }

@@ -20,8 +20,7 @@
                    
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                       <th class="align-middle text-center text-sm"> 
-                        <span class="badge badge-sm bg-gradient-success"> <a href=""> Edit</a></span>
-                        <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
+                      
                         <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create.category')}}">Create</a></span></th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
@@ -40,8 +39,8 @@
                     
                       <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success"> <a href="{{route('edit.category', $category->id)}}"> Edit</a></span>
-                        <span class="badge badge-sm bg-gradient-success"> <a href=""> Delete</a></span>
-                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('create.category')}}">Create</a></span>
+                        <span class="badge badge-sm bg-gradient-success"> <a href="{{route('delete.category', $category->id)}}"> Delete</a></span>
+                   
                       </td>
                     </tr>
                     
@@ -53,4 +52,5 @@
           </div>
         </div>
       </div>
+      
 @endsection

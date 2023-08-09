@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\order_detail;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -41,6 +42,9 @@ class ControllerAuth extends Controller
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
+
+
+
     public function redirectToGoogle() {
         return Socialite::driver('google')->redirect();
     }
@@ -51,7 +55,9 @@ class ControllerAuth extends Controller
         if($finduser) {
            
             Auth::login($finduser);
-            return redirect()->route('index.home');
+            $session = $finduser->email;
+            Session::put('email', $session);
+            return redirect()->route('slide.index');
         }
         else {
             $newUser = new User;
@@ -65,8 +71,18 @@ class ControllerAuth extends Controller
             $newUser->save();
 
             Auth::login($newUser);
-            $newUser->session()->regenerate();
+            $session = $newUser->email;
+            Session::put('email', $session);
             return redirect()->route('index.home');
         }
+    }
+    public function Logout() {
+        
+        Session::flush();
+        $Order_detail = order_detail::with('product')->whereNull('orders_id')->get();
+        foreach($Order_detail as $order_detalil){
+            $order_detalil->delete();
+        }
+        return redirect('/Login');
     }
 }

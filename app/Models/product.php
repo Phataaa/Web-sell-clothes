@@ -26,6 +26,9 @@ class product extends Model
     public function feedback() {
         return $this -> hasMany('App\Models\feedback');
     }
-    
-    protected $fillable = ['name', 'description', 'quanity', 'brand', 'color', 'category_id', 'user_id'];
+    public function order_detail() {
+        return $this -> hasMany('App\Models\order_detail');
+    }
+    protected $fillable = ['name', 'description', 'quanity', 'brand', 'color', 'category_id', 'user_id']; 
+   
 }
