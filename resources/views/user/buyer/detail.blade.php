@@ -323,7 +323,7 @@
     <div class="information">
         <h1 style="font-size: 50px">{{$product->name}}</h1>
         <h2 style="font-size: 45px; color:red">Price: {{$product->price}}.00$</h2>
-        <p style="font-size: 25px; color:red">{{$product->description}}</p>
+        <p style="font-size: 25px; color:rgb(237, 3, 3)">{{$product->description}}</p>
         <p style="font-size: 25px; color:black">Color: {{$product->color}}</p>
         <p style="font-size: 25px; color:black">Brand: {{$product->brand}}</p>
         <hr>

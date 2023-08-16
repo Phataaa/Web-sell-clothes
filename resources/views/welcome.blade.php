@@ -7,7 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Nam Ngooo an cut cho</p>
-    gfgfgf
+    <p></p>
 </body>
 </html>
